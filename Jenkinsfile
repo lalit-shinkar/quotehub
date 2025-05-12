@@ -4,7 +4,16 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/your-username/quotehub.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/api']],  // Make sure this matches your working branch
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/lalit-shinkar/quotehub.git',
+                        credentialsId: 'github-pat'  // Replace with your actual Jenkins GitHub PAT credentials ID
+                    ]]
+                ])
             }
         }
 
@@ -27,4 +36,3 @@ pipeline {
         }
     }
 }
-
