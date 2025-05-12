@@ -15,7 +15,7 @@
 #     return jsonify({"quote": random.choice(QUOTES)})
 
 from flask import Flask
-from routes import quote_api  # Import the blueprint
+from app.api.routes import quote_api  # Import the blueprint
 
 def create_app():
     app = Flask(__name__)
