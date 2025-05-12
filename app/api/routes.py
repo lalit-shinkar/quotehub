@@ -9,11 +9,6 @@ QUOTES = [
     "Simplicity is the soul of efficiency.",
     "First, solve the problem. Then, write the code."
 ]
-
- # Add the root route
-@app.route('/')
-def home():
-    return 'Welcome to the QuoteHub API!'
         
 @quote_api.route('/api/quote')
 def get_quote():
