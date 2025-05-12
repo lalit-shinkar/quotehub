@@ -14,18 +14,18 @@ QUOTES = [
 def get_quote():
     return jsonify({"quote": random.choice(QUOTES)})
 
-# from flask import Flask
-# from app.api.routes import quote_api  # Import the blueprint
+from flask import Flask
+from app.api.routes import quote_api  # Import the blueprint
 
-# def create_app():
-#     app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-#     # Register the Blueprint
-#     app.register_blueprint(quote_api)
+    # Register the Blueprint
+    app.register_blueprint(quote_api)
 
-#     # Add the root route
-#     @app.route('/')
-#     def home():
-#         return 'Welcome to the QuoteHub API!'
+    # Add the root route
+    @app.route('/')
+    def home():
+        return 'Welcome to the QuoteHub API!'
 
-#     return app
+    return app
