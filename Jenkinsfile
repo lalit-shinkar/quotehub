@@ -4,22 +4,24 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/api']],  // Make sure this matches your working branch
-                    doGenerateSubmoduleConfigurations: false,
-                    extensions: [],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/lalit-shinkar/quotehub.git',
-                        credentialsId: 'github-pat'  // Replace with your actual Jenkins GitHub PAT credentials ID
-                    ]]
+                checkout([$class: 'GitSCM',
+                  branches: [[name: '*/api']],
+                  userRemoteConfigs: [[
+                      url: 'https://github.com/lalit-shinkar/quotehub.git',
+                      credentialsId: 'github-pat'
+                  ]]
                 ])
             }
         }
 
-        stage('Install Requirements') {
+        stage('Set up Virtual Environment') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    source venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
