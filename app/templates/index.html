@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuoteHub</title>
+</head>
+<body style="text-align:center; padding:50px;">
+    <h1>QuoteHub</h1>
+    <p id="quote" style="font-size:1.5rem; margin-top:20px;"></p>
+    <button onclick="loadQuote()" style="padding:10px 20px;">Get New Quote</button>
+
+    <script>
+        function loadQuote() {
+            fetch("/api/quote")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("quote").innerText = `"${data.quote}"`;
+                });
+        }
+
+        // Load one by default
+        loadQuote();
+    </script>
+</body>
+</html>
+
