@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 5001:5001 quotehub'
+                sh 'docker run -d -p 5002:5001 quotehub'
             }
         }
     }
